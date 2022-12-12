@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  SchemaDSCOP: 'DSCOP',
+  Schema: 'Microtec',
+  UrlBase: 'https://dswebapi.duesoft.com.br/api',
+  idLocalStorage: 'dscop'
 };

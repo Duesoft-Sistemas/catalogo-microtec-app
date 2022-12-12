@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  SchemaDSCOP: 'DSCOP',
+  Schema: 'Prudenseg',
+  UrlBase: 'https://localhost:44331/api',
+  //UrlBase: 'https://dswebapi.duesoft.com.br/api',
+  idLocalStorage: 'dscop'
 };
 
 /*

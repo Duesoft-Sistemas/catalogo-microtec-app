@@ -1,0 +1,36 @@
+<app-body-page [spinner]="spinner" [showBody]="listProdutos.length > 0">
+  <div header *ngIf="listProdutos.length <= 0" class="row d-flex justify-content-center">
+    <div class="col-sm-8 mb-1 form-group ">
+      <div class="row d-flex justify-content-center ">
+        <div class="col-sm-12 img-custom">
+          <div class="d-flex pb-2">
+          </div>
+        </div>
+        <div class="col-sm-12 divPading">
+          <div class="input-group-sm">
+              <div class="box">
+                <input matInput class="form-control input justify-content-center" placeholder="Código / Fábrica / Original / Similar / Descrição" (ngModel)="'Teste'" type="search" id="inputSearchDescricao">
+                <button matSuffix mat-icon-button aria-label="Clear" class="botaoNoInput" (click)="buscaProdutosPorDescricao()">
+                  <mat-icon class="text-white">search</mat-icon>
+                </button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div filter [ngClass]="{'img-custom': getImgBackgroud(), 'card-header-no-background':! getImgBackgroud() }"
+    [ngStyle]="{'background-image': 'url('+getImgBackgroud()+')'}" *ngIf="listProdutos.length <= 0"></div> -->
+  <div body *ngIf="listProdutos.length > 0">
+    <app-lista-produtos [listProdutos]="listProdutos" [totalPaginas]="formEsteira.get('totalPages').value"
+      (pageChanged)="goTo($event)"></app-lista-produtos>
+  </div>
+</app-body-page>
+
+<div class="btn-absolute" *ngIf="listProdutos.length > 0">
+  <button mat-fab color="primary" class="btn btn-pattern" (click)="openModalFiltro()" matTooltip="Pesquisar"
+    aria-label="Filtrar">
+    <i class="fas fa-search" aria-hidden="true"></i>
+  </button>
+</div>
