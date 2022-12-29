@@ -80,14 +80,14 @@ export class IniciarComponent implements OnInit {
   buscaProdutosPorDescricao(): void {
     this.spinner = true;
     this.service
-      .getProdutosPorDescricaoCode(this.getDataBusca())
+      .getProdutosPesquisa(this.getDataBusca())
       .pipe(take(1))
       .subscribe({
         next: (data: any) => {
           if (data) {
             this.listProdutos = data.produtos;
             this.formEsteira.get('totalPages').setValue(data.totalPaginas);
-            if (data.produtos.lengh <= 0)
+            if (data.produtos.lenght <= 0)
               Toaster.Warning('Nenhum produto encontrado.');
           } else Toaster.Warning('Nenhum produto encontrado.');
         },

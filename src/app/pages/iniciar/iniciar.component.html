@@ -9,7 +9,7 @@
         <div class="col-sm-12 divPading">
           <div class="input-group-sm">
               <div class="box">
-                <input matInput class="form-control input justify-content-center" placeholder="Código / Fábrica / Original / Similar / Descrição" (ngModel)="'Teste'" type="search" id="inputSearchDescricao">
+                <input matInput class="form-control input justify-content-center" placeholder="Código / Fábrica / Original / Similar / Descrição" [(ngModel)]="descricao" type="search" id="inputSearchDescricao">
                 <button matSuffix mat-icon-button aria-label="Clear" class="botaoNoInput" (click)="buscaProdutosPorDescricao()">
                   <mat-icon class="text-white">search</mat-icon>
                 </button>

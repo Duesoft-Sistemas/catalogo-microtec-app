@@ -66,7 +66,7 @@ export class PesquisarProdutosComponent implements OnInit {
               resolve(data);
               this.listProdutos = data.produtos;
               this.totalPaginas = data.totalPaginas;
-              if (data.produtos.lengh <= 0) {
+              if (data.produtos.lenght <= 0) {
                 Toaster.Warning('Nenhum produto encontrado.');
               }
             } else {
