@@ -14,7 +14,7 @@
       [controlName]="'cpfCnpj'" [maxLength]="18" [mask]="'00.000.000/0000-00'"></app-input-model>
     <div class="col-md-6">
       <label for="">Empresa</label>
-      <ng-select [loading]="loadListEmpresas" [items]="listEmpresas" bindLabel="companyName1" bindValue="companyId"
+      <ng-select [loading]="loadListEmpresas" [items]="listEmpresas" bindLabel="companyName" bindValue="companyId"
         placeholder="Selecione..." formControlName="codEmpresa"></ng-select>
     </div>
     <!-- <app-input-model [label]="'RG'" class="col-md-2" [form]="form" [controlName]="'rg'" [mask]="'000000000000000'">
