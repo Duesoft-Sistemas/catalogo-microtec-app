@@ -26,10 +26,10 @@ export class AddRemoveCarrinhoComponent implements OnInit {
 
   verificaQuantidade(): void {
     let quantidade = this.form ? this.form.get(this.controlName).value : this.item.quantidade;
-    if (quantidade > this.item.produto.stock) {
+    if (Number(quantidade) > this.item.produto.stock) {
       Toaster.Error('Quantidade acima da quantidade de estoque disponível!');
       this.form ? this.form.get(this.controlName).setValue(1) : this.item.quantidade = 1;
-    } else if (quantidade < 0 || isNaN(quantidade)) {
+    } else if (Number(quantidade) < 0 || isNaN(quantidade)) {
       Toaster.Error('Quantidade inválida!');
       this.form ? this.form.get(this.controlName).setValue(1) : this.item.quantidade = 1;
     }
@@ -38,8 +38,8 @@ export class AddRemoveCarrinhoComponent implements OnInit {
   aumentaQuantidade(): void {
     let quantidade = this.form ? this.form.get(this.controlName).value : this.item.quantidade;
     let item = new ProdutoCarrinho(this.item);
-    if (quantidade < this.item.produto.stock) {
-      item.quantidade = quantidade + this.item.produto.unitiesOnPackage;
+    if (Number(quantidade) < this.item.produto.stock) {
+      item.quantidade = Number(quantidade) + this.item.produto.unitiesOnPackage;
       this.atualizaQuantidade(item);
     } else Toaster.Warning('Quantidade maxima de estoque!');
   }
@@ -48,8 +48,8 @@ export class AddRemoveCarrinhoComponent implements OnInit {
   diminuiQuantidade(): void {
     let quantidade = this.form ? this.form.get(this.controlName).value : this.item.quantidade;
     let item = new ProdutoCarrinho(this.item);
-    if (quantidade > 1) {
-      item.quantidade = quantidade - this.item.produto.unitiesOnPackage;
+    if (Number(quantidade) > 1) {
+      item.quantidade = Number(quantidade) - this.item.produto.unitiesOnPackage;
       this.atualizaQuantidade(item);
     } else Toaster.Warning('Quantidade mínima para adicionar ao carrinho!');
   }
