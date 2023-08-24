@@ -29,29 +29,39 @@ export class AddRemoveCarrinhoComponent implements OnInit {
     if (Number(quantidade) > this.item.produto.stock) {
       Toaster.Error('Quantidade acima da quantidade de estoque disponível!');
       this.form ? this.form.get(this.controlName).setValue(1) : this.item.quantidade = 1;
-    } else if (Number(quantidade) < 0 || isNaN(quantidade)) {
+    } else if (Number(quantidade)%1 !=0 || Number(quantidade) < 0 || isNaN(quantidade)) {
       Toaster.Error('Quantidade inválida!');
       this.form ? this.form.get(this.controlName).setValue(1) : this.item.quantidade = 1;
-    }
+    }else
+      this.atualizaQuantidade(this.item);
   }
 
   aumentaQuantidade(): void {
     let quantidade = this.form ? this.form.get(this.controlName).value : this.item.quantidade;
-    let item = new ProdutoCarrinho(this.item);
-    if (Number(quantidade) < this.item.produto.stock) {
-      item.quantidade = Number(quantidade) + this.item.produto.unitiesOnPackage;
-      this.atualizaQuantidade(item);
-    } else Toaster.Warning('Quantidade maxima de estoque!');
+    if (Number(quantidade)%1 !=0 || Number(quantidade) < 0 || isNaN(quantidade)) {
+      Toaster.Error('Quantidade inválida!');
+      this.form ? this.form.get(this.controlName).setValue(1) : this.item.quantidade = 1;
+    }else{
+      let item = new ProdutoCarrinho(this.item);
+      if (Number(quantidade) < this.item.produto.stock) {
+        item.quantidade = Number(quantidade) + this.item.produto.unitiesOnPackage;
+        this.atualizaQuantidade(item);
+      } else Toaster.Warning('Quantidade maxima de estoque!');
+    }
   }
-
 
   diminuiQuantidade(): void {
     let quantidade = this.form ? this.form.get(this.controlName).value : this.item.quantidade;
-    let item = new ProdutoCarrinho(this.item);
-    if (Number(quantidade) > 1) {
-      item.quantidade = Number(quantidade) - this.item.produto.unitiesOnPackage;
-      this.atualizaQuantidade(item);
-    } else Toaster.Warning('Quantidade mínima para adicionar ao carrinho!');
+    if (Number(quantidade)%1 !=0 || Number(quantidade) < 0 || isNaN(quantidade)) {
+      Toaster.Error('Quantidade inválida!');
+      this.form ? this.form.get(this.controlName).setValue(1) : this.item.quantidade = 1;
+    }else{
+      let item = new ProdutoCarrinho(this.item);
+      if (Number(quantidade) > 1) {
+        item.quantidade = Number(quantidade) - this.item.produto.unitiesOnPackage;
+        this.atualizaQuantidade(item);
+      } else Toaster.Warning('Quantidade mínima para adicionar ao carrinho!');
+    }
   }
 
   private atualizaQuantidade(item: ProdutoCarrinho): void {
